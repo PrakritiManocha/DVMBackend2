@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Welcome to Your Profile, {{ user.username }}!</h2>
+    <p>Your wallet balance: {{user_profile.wallet_balance }}</p>
+{% endblock %}

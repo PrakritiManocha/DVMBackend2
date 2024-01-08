@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Ticketing System</title>
+</head>
+{% block content %}
+<body>
+    <h1>Welcome to Railway Ticketing System</h1>
+    <ul>
+        {% for train in trains %}
+        <li>{{ train.name }} - {{ train.source }} to {{ train.destination }} - Departure: {{ train.departure_time }}</li>>
+        <li><a href="{% url 'ticketing:book_ticket' train.id %}" style="color:blue;" >Book Ticket</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+</body>
+</html>

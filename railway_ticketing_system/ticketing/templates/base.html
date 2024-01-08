@@ -1,0 +1,65 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Title</title>
+
+    <style>
+        body {
+           font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+
+        nav {
+    
+            background-color: #333; 
+            padding: 10px;
+        }
+
+        ul {
+           
+            list-style: none; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        li {
+            display: inline-block;
+            margin-right: 10px; 
+        }
+
+        a {
+            
+            text-decoration: none; 
+            color: white; 
+        }
+
+        a:hover {
+           
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 20px; 
+        }
+    </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="{% url 'ticketing:homepage' %}">Home</a></li>
+       {% if user.is_authenticated %}
+        <li><a href="{% url 'ticketing:user_bookings' %}">My Bookings</a></li>
+      <li><a href="{% url 'ticketing:profile' %}">Profile</a></li>
+        <li><a href="{% url 'ticketing:logout' %}">Logout</a></li>
+      {% else %}
+        <li><a href="{% url 'ticketing:login' %}">Login</a></li>
+        <li><a href="{% url 'ticketing:signup' %}">Sign Up</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+</body>

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bookings</title>
+</head>
+<body>
+{% block content %}
+    <h1>Your Bookings</h1>
+    <p>Wallet Balance: Rs.{{ user_profile.wallet_balance }}</p>
+
+
+
+
+
+     {% if bookings %}
+    <ul>
+        {% for booking in bookings %}
+            <li>
+                Train: {{ booking.train.name }}<br>
+                Journey Date: {{ booking.journey_date }}<br>
+                Booking Date: {{ booking.booking_date }}<br>
+                <form method="post" action="{% url 'ticketing:cancel_booking' booking.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Cancel Booking</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No bookings yet.</p>
+  {% endif %}
+
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
+</body>
+</html>
+
